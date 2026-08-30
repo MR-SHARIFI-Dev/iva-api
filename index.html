@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>IVA API — مجموعه وب‌سرویس</title>
+  <style>
+    :root{--bg:#07111f;--panel:#0d1b2c;--panel2:#12243a;--line:#263b53;--text:#eef6ff;--muted:#91a5bc;--blue:#38bdf8;--green:#34d399;--red:#fb7185;--shadow:0 20px 60px #0007}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#123357 0,transparent 34%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}button,input,select{font:inherit}.wrap{width:min(1180px,calc(100% - 28px));margin:auto}.hero{padding:64px 0 34px}.badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid #38bdf855;border-radius:999px;color:var(--blue);background:#38bdf811;font-size:13px}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 16px var(--green)}h1{font-size:clamp(38px,7vw,76px);margin:20px 0 12px;letter-spacing:-2px}.lead{color:var(--muted);font-size:17px;line-height:2;max-width:760px}.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.stat{background:#ffffff08;border:1px solid var(--line);padding:12px 16px;border-radius:14px}.stat b{color:var(--blue)}.layout{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;padding-bottom:50px}.card{background:linear-gradient(145deg,#102238dd,#0a1727ee);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}.card-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.card-head h2{font-size:18px;margin:0}.tester{padding:20px}.field{margin-bottom:14px}.field label{display:block;color:var(--muted);font-size:13px;margin-bottom:7px}select,input{width:100%;border:1px solid var(--line);background:#071321;color:var(--text);border-radius:12px;padding:13px 14px;outline:none}select:focus,input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #38bdf81a}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:flex;gap:10px}.btn{border:0;border-radius:12px;padding:12px 17px;cursor:pointer;font-weight:bold}.primary{background:linear-gradient(135deg,#0ea5e9,#2563eb);color:#fff;flex:1}.ghost{background:#ffffff0c;color:var(--text);border:1px solid var(--line)}pre{direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-word;margin:18px 0 0;background:#030914;border:1px solid #1d2a3b;border-radius:14px;padding:16px;min-height:190px;max-height:480px;overflow:auto;color:#b9e7ff;font:13px/1.7 Consolas,monospace}.list{max-height:710px;overflow:auto}.endpoint{padding:16px 20px;border-bottom:1px solid #ffffff0b;cursor:pointer;transition:.2s}.endpoint:hover{background:#ffffff08}.endpoint:last-child{border:0}.endpoint-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.endpoint h3{font-size:14px;margin:0}.method{direction:ltr;background:#34d39918;color:var(--green);border:1px solid #34d39944;padding:4px 8px;border-radius:7px;font:bold 11px Consolas}.path{direction:ltr;text-align:left;color:var(--blue);font:12px Consolas;margin-top:8px}.params{color:var(--muted);font-size:12px;margin-top:7px}.foot{color:#64788f;text-align:center;padding:0 0 30px;font-size:12px}.loading{opacity:.6;pointer-events:none}@media(max-width:850px){.layout{grid-template-columns:1fr}.hero{padding-top:38px}.list{max-height:none}.row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <span class="badge"><i class="dot"></i> PHP 8.1 · بدون کتابخانه · GET JSON API</span>
+      <h1>IVA API</h1>
+      <p class="lead">یک درگاه یکپارچه برای دانلود رسانه، اطلاعات بازار، ابزار متن، محتوای فارسی و سرویس‌های کاربردی. هر endpoint را همین‌جا انتخاب و آزمایش کنید.</p>
+      <div class="stats"><span class="stat"><b id="count">۲۰</b> سرویس</span><span class="stat">خروجی <b>JSON</b></span><span class="stat">بدون <b>API Key</b></span></div>
+    </section>
+    <section class="layout">
+      <article class="card">
+        <div class="card-head"><h2>آزمایش زنده API</h2><span class="method">GET</span></div>
+        <div class="tester" id="tester">
+          <div class="field"><label for="endpoint">Endpoint</label><select id="endpoint"></select></div>
+          <div class="row">
+            <div class="field"><label for="p1n">نام پارامتر اول</label><input id="p1n" placeholder="مثلاً url یا q"></div>
+            <div class="field"><label for="p1v">مقدار</label><input id="p1v" placeholder="مقدار پارامتر"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="p2n">نام پارامتر دوم</label><input id="p2n" placeholder="اختیاری"></div>
+            <div class="field"><label for="p2v">مقدار</label><input id="p2v" placeholder="اختیاری"></div>
+          </div>
+          <div class="field"><label>آدرس درخواست</label><input id="requestUrl" readonly></div>
+          <div class="actions"><button class="btn primary" id="send">ارسال درخواست</button><button class="btn ghost" id="copy">کپی URL</button></div>
+          <pre id="output">برای مشاهده پاسخ، یک endpoint را آزمایش کنید.</pre>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-head"><h2>فهرست Endpointها</h2><span id="status" class="badge">در حال دریافت…</span></div>
+        <div class="list" id="list"></div>
+      </article>
+    </section>
+  </main>
+  <footer class="foot">IVA API · مناسب نصب مستقیم روی cPanel</footer>
+  <script>
+    const fallback=[
+      {id:'media',title:'دانلودر Instagram، YouTube و GitHub',params:'url'},
+      {id:'wikipedia',title:'جستجوی ویکی‌پدیای فارسی',params:'q, limit'},
+      {id:'news/yjc',title:'آخرین اخبار YJC',params:'limit'},
+      {id:'market/tgju',title:'قیمت طلا، ارز و رمزارز',params:'symbol'},
+      {id:'market/bonbast',title:'نرخ ارز Bonbast',params:'currency'},
+      {id:'market/crypto',title:'ارزهای دیجیتال',params:'symbol'},
+      {id:'finglish',title:'تبدیل فینگلیش به فارسی',params:'text'},
+      {id:'text/reverse',title:'برعکس‌کردن متن',params:'text'},
+      {id:'national-id/validate',title:'اعتبارسنج کد ملی',params:'code'},
+      {id:'datetime',title:'تاریخ و ساعت',params:'timezone'},
+      {id:'zekr',title:'ذکر روز',params:'-'},{id:'hadith',title:'حدیث',params:'-'},{id:'hafez',title:'فال حافظ',params:'-'},{id:'corona',title:'روند هفتگی کرونا',params:'limit'},
+      {id:'random/bio-fa',title:'بیو فارسی',params:'-'},{id:'random/bio-en',title:'بیو انگلیسی',params:'-'},
+      {id:'random/quote',title:'سخن بزرگان',params:'-'},{id:'random/riddle',title:'چیستان',params:'-'},
+      {id:'random/fact',title:'دانستنی',params:'-'},{id:'random/joke',title:'جوک',params:'-'}
+    ];
+    const $=id=>document.getElementById(id), state={items:fallback};
+    function buildUrl(){const u=new URL('api.php',location.href);u.searchParams.set('endpoint',$('endpoint').value);[['p1n','p1v'],['p2n','p2v']].forEach(([n,v])=>{if($(n).value.trim()&&$(v).value.trim())u.searchParams.set($(n).value.trim(),$(v).value.trim())});$('requestUrl').value=u.href;return u.href}
+    function choose(id){$('endpoint').value=id;const item=state.items.find(x=>x.id===id);const ps=(item?.params||'').split(',').map(x=>x.trim()).filter(x=>x&&x!=='-'&&x!=='(optional)');$('p1n').value=ps[0]||'';$('p2n').value=ps[1]||'';buildUrl();window.scrollTo({top:260,behavior:'smooth'})}
+    function render(items){state.items=items;$('count').textContent=items.length;$('endpoint').innerHTML=items.map(x=>`<option value="${x.id}">${x.title}</option>`).join('');$('list').innerHTML=items.map(x=>`<div class="endpoint" data-id="${x.id}"><div class="endpoint-top"><h3>${x.title}</h3><span class="method">GET</span></div><div class="path">api.php?endpoint=${x.id}</div><div class="params">پارامترها: ${x.params||'-'}</div></div>`).join('');document.querySelectorAll('.endpoint').forEach(el=>el.onclick=()=>choose(el.dataset.id));choose(items[0].id)}
+    async function load(){try{const r=await fetch('api.php?endpoint=endpoints');const j=await r.json();if(j.ok)render(j.data.items);else throw 0;$('status').textContent='آنلاین'}catch{render(fallback);$('status').textContent='فهرست آفلاین'}}
+    $('send').onclick=async()=>{const t=$('tester');t.classList.add('loading');$('output').textContent='در حال دریافت…';try{const r=await fetch(buildUrl());const text=await r.text();try{$('output').textContent=JSON.stringify(JSON.parse(text),null,2)}catch{$('output').textContent=text}}catch(e){$('output').textContent='خطا در ارتباط: '+e.message}finally{t.classList.remove('loading')}};
+    $('copy').onclick=async()=>{await navigator.clipboard.writeText(buildUrl());$('copy').textContent='کپی شد';setTimeout(()=>$('copy').textContent='کپی URL',1200)};
+    ['endpoint','p1n','p1v','p2n','p2v'].forEach(id=>$(id).addEventListener('input',buildUrl));load();
+  </script>
+</body>
+</html>
